@@ -1,0 +1,20 @@
+.board {
+    justify-content: center;
+    margin:0% 75rpx 0% 75rpx;
+    display: flex;
+    margin-top: -8rpx;
+    flex-wrap: wrap;
+}
+
+.board.row {
+    display: block;
+}
+
+.board.row.cell {
+    display: flex;
+    justify-content: center;
+}
+
+page{
+    background-color: #5DAC81;
+}

@@ -1,0 +1,7 @@
+<view class='tip'>计时器{{m}}:{{s}}</view>
+ <text>\n</text>
+<view class="board" wx:for="{{sizeArray}}" wx:for-item="i">
+  <view class="row" wx:for="{{sizeArray}}" wx:for-item="j" margin>
+    <image class="cell" src="{{imageBoard[i][j]}}" data-row="{{i}}" data-col="{{j}}" bindtap="onClick" style="width: {{600/imageBoard.length}}rpx; height: {{600/imageBoard.length}}rpx;"></image>
+  </view>
+</view>
