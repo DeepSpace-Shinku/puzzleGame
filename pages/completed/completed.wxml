@@ -1,4 +1,9 @@
 <!--pages/completed/completed.wxml-->
-<view> 恭喜你成功了！ </view>
-<image style="width: 200px; height: 200px; background-color: #eeeeee;"  src="../../resources/img/flower.png"> </image>
-<button bindtap="restartGame" style="position: relative; left: 0rpx; top: 449rpx"> 重新开始 </button>
+<view class='mainContainer'>
+    <text>\n\n</text>
+    <text class='title'>恭喜您完成了拼图，用时 {{time}} !</text>
+    <text>\n\n\n</text>
+    <image style="width: 600rpx; height: 600rpx; background-color: #eeeeee;"  src="{{fullImageURL}}"> </image>
+    <text>\n\n\n</text>
+    <button class="restart" bindtap="restartGame"> 重新开始 </button>
+</view>

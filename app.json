@@ -1,12 +1,14 @@
 {
     "pages": [
+        "pages/select/select",
         "pages/index/index",
         "pages/completed/completed"
+        
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "Hello MiniProgram",
+        "navigationBarTitleText": "拼图游戏",
         "navigationBarTextStyle": "black"
     },
     "sitemapLocation": "sitemap.json"

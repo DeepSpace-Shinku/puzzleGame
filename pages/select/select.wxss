@@ -1,0 +1,36 @@
+/* pages/select.wxss */
+.mainContainer {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 600rpx;
+    justify-content: center;
+    margin:0rpx 75rpx 0rpx 75rpx;
+}
+
+.title {
+    margin:40rpx 0rpx 40rpx 0rpx;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 3rpx;
+    font-size: 85rpx;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color:white;
+    text-shadow:5px 1px 6px black;
+}
+
+.select{
+    margin:80rpx 75rpx 80rpx 75rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300rpx;
+    height: 100rpx;
+    color: white;
+    background-color: #36563C;
+    border:1px solid black;
+  }
+
+page{
+    background-color: #5DAC81;
+}

@@ -1,5 +1,18 @@
-<view class='tip'>计时器{{m}}:{{s}}</view>
- <text>\n</text>
+
+<text>\n</text>
+<view class="gadgets">
+    <text class='title'>拼图游戏</text>
+    <image src="{{fullImageURL}}" style="opacity: {{showOriginal}}; width: 200rpx; height: 200rpx"></image>
+</view>
+
+
+
+<view class="gadgets">
+    <view class='timer'>{{m}}:{{s}}</view>
+    <button class= 'showOriginal' bindtap='onClickShowOriginal' style="position: relative; left: 126rpx">显示原图</button>
+</view>
+<text>\n</text>
+
 <view class="board" wx:for="{{sizeArray}}" wx:for-item="i">
   <view class="row" wx:for="{{sizeArray}}" wx:for-item="j" margin>
     <image class="cell" src="{{imageBoard[i][j]}}" data-row="{{i}}" data-col="{{j}}" bindtap="onClick" style="width: {{600/imageBoard.length}}rpx; height: {{600/imageBoard.length}}rpx;"></image>

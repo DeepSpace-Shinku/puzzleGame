@@ -1,22 +1,18 @@
-// pages/completed/completed.js
+// pages/select.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        url: '../index/index'
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(opt) {
-        
-        this.setData({
-            time: opt.time,
-            fullImageURL: opt.fullImage
-        })
+    onLoad(options) {
+
     },
 
     /**
@@ -68,11 +64,12 @@ Page({
 
     },
 
-    restartGame: function(){
+    startGame: function(e){
+        var size = e.target.dataset.size;
+        var startURL = this.data.url.concat("?size=", size)
+        this.setData({startURL: startURL})
         wx.redirectTo({
-            url: '../select/select'
+            url: startURL
           })
     },
-
-
 })

@@ -48,14 +48,15 @@
         "disableUseStrict": false,
         "useCompilerPlugins": false
     },
-    "compileType": "miniprogram",
+    "compileType": "game",
     "libVersion": "2.19.4",
-    "appid": "wx95e005c6ce05e7a3",
-    "projectname": "miniprogram-92",
+    "appid": "wx60ce5b98262d8f04",
+    "projectname": "puzzleGame",
     "condition": {},
     "editorSetting": {
         "tabIndent": "insertSpaces",
         "tabSize": 4
     },
-    "testRoot": "minitest/"
+    "testRoot": "minitest/",
+    "simulatorPluginLibVersion": {}
 }

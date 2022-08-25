@@ -1,8 +1,8 @@
 // index.js
 // 获取应用实例
 const app = getApp()
-var SIZE = 3;
-var STEPS = 1;
+var SIZE;
+var STEPS = 3;
 var SOURCE = "chuihuamen"
 var varDefaultBoard = defualtBoardGenerator(SIZE);
 var varBoard;
@@ -12,24 +12,29 @@ var varBlankIndex;
 
 Page({
   data: {
-      
      h:'00',
      m:'00',
      s:'00',
   //存储计时器
    setInter:'',
    num:1,
+   showOriginal: 0
   },
-  onLoad: function(){
+
+  onLoad: function(opt){
+    getSize(opt.size)
+    varDefaultBoard = defualtBoardGenerator(SIZE)
     this.sizeArrayGenerator(SIZE)
     shuffle(SIZE, STEPS)
     this.setData({
         board: varBoard,
         blankIndex: varBlankIndex,
         defualtBoard: varDefaultBoard,
-        imageBoard: imageBoard
+        imageBoard: imageBoard,
+        source: SOURCE
     })
     this.taskStart()
+    this.originalImageGenerator(this.data.source)
   },
 
   queryTime(){
@@ -62,7 +67,7 @@ Page({
       
           var numVal = that.data.num + 1;
           that.setData({ num: numVal });
-          console.log('setInterval==' + that.data.num);
+          // console.log('setInterval==' + that.data.num);
     
       },1000)
   },
@@ -94,40 +99,62 @@ Page({
   },
 
 
-onClick: function(e)
-{
-    var row = e.target.dataset.row, col = e.target.dataset.col;
-    var blankIndex = this.data.blankIndex
-    var blankRow = oneDToRow(blankIndex, SIZE)
-    var blankCol = oneDToCol(blankIndex, SIZE)
-    if (!this.isNextTo(row, col, blankRow, blankCol)) return
-    
-    var tempBoard = swap(this.data.board, row, col, blankRow, blankCol)
-    var tempImageBoard = swap(this.data.imageBoard, row, col, blankRow, blankCol)
-    var newBlankIndex = twoDToOneD(row, col, SIZE)
+    onClick: function(e)
+    {
+        var row = e.target.dataset.row, col = e.target.dataset.col;
+        var blankIndex = this.data.blankIndex
+        var blankRow = oneDToRow(blankIndex, SIZE)
+        var blankCol = oneDToCol(blankIndex, SIZE)
+        if (!this.isNextTo(row, col, blankRow, blankCol)) return
+        
+        var tempBoard = swap(this.data.board, row, col, blankRow, blankCol)
+        var tempImageBoard = swap(this.data.imageBoard, row, col, blankRow, blankCol)
+        var newBlankIndex = twoDToOneD(row, col, SIZE)
 
-    this.setData({
-        board: tempBoard,
-        imageBoard: tempImageBoard,
-        blankIndex: newBlankIndex
-    })
+        this.setData({
+            board: tempBoard,
+            imageBoard: tempImageBoard,
+            blankIndex: newBlankIndex
+        })
 
 
-    if (isArrEqual(this.data.board, varDefaultBoard)) {
-        wx.redirectTo({
-            url: '../completed/completed'
-          })
-    }
-    
-},
+        if (isArrEqual(this.data.board, varDefaultBoard)) {
+            wx.redirectTo({
+                url: '../completed/completed?time=' + this.data.m.toString() + ':' + this.data.s.toString() + '&fullImage=' + this.data.fullImageURL
+            })
+        }
+        
+    },
 
-isNextTo: function(r1, c1, r2, c2)
-{
-    if ((r1 == r2 + 1 || r1 == r2 - 1) && c1 == c2) return true
-    if ((c1 == c2 + 1 || c1 == c2 - 1) && r1 == r2) return true
-    return false
-}
+    isNextTo: function(r1, c1, r2, c2)
+    {
+        if ((r1 == r2 + 1 || r1 == r2 - 1) && c1 == c2) return true
+        if ((c1 == c2 + 1 || c1 == c2 - 1) && r1 == r2) return true
+        return false
+    },
+
+    onClickShowOriginal: function(){
+        var showOrigianl = this.data.showOriginal
+        if (showOrigianl == 1) showOrigianl = 0;
+        else showOrigianl = 1
+        this.setData({showOriginal: showOrigianl})
+    },
+
+    originalImageGenerator: function(source)
+    {
+        var prefix = '../../resources/img/'
+        var URL = prefix.concat(source, '/original.jpg')
+        this.setData({
+            fullImageURL: URL
+        })
+    },
+
+
 })
+
+function getSize(strSize) {
+    SIZE = parseInt(strSize)
+}
 
 function imageBoardGenerator(source, board)
 {
